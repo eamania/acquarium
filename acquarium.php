@@ -1,17 +1,24 @@
 <?php include_once 'header.php'; ?>
-<div class="row">
-    <div class="col-md-4">ID</div>
-    <div class="col-md-8">Nome</div>
-</div>
+
 <?php
 $pdostat = $db->prepare("SELECT * FROM Acquarium");
 //$pdostat->bindValue(':id', 1, PDO::PARAM_INT);
 $pdostat->execute();
 $results = $pdostat->fetchAll();
-foreach ($results as $row) {
+
+if ($results == NULL) {
+    echo 'Nessun Acquario Configurato <br> AGGIUNGINE UNO!';
+}
+
+else {
+    echo '<div class="row"><div class="col-md-4">ID</div><div class="col-md-8">Nome</div></div>';
+    
+    foreach ($results as $row) {
     echo '<div class="row">';
     echo '<div class="col-md-4">' . $row['idAcquario'] . '</div>' . '<div class="col-md-8">' . $row['Name'] . '</div>';
     echo '</div>';
+}
+    
 }
 ?><div class="container"> 
 
