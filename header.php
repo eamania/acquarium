@@ -1,7 +1,7 @@
 <?php
 require_once 'class/autoloader.php';
 $dbDate = new MysqlData();
-$db = new myPDO($dbDate::DATABASE_SERVER, $dbDate::DATABASE_USERNAME, $dbDate::DATABASE_PASSWORD, $dbDate::DATABASE_NAME);
+$db = new myPDO("mysql:host=$dbDate->DatabaseServer;dbname=$dbDate->DatabaseName", $dbDate->DatabaseUsername, $dbDate->DatabasePassword);
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,9 +15,4 @@ $db = new myPDO($dbDate::DATABASE_SERVER, $dbDate::DATABASE_USERNAME, $dbDate::D
     <span class="label label-danger">Acquarium Simple
 </span>
     <button type="button" class="btn btn-default navbar-btn right">Sign in</button>
-    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-
 </nav>

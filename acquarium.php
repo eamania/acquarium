@@ -1,54 +1,50 @@
-<?php include_once 'header.php'; ?>
-
 <?php
-$pdostat = $db->prepare("SELECT * FROM Acquarium");
-//$pdostat->bindValue(':id', 1, PDO::PARAM_INT);
-$pdostat->execute();
-$results = $pdostat->fetchAll();
+include_once 'header.php';
+?>
 
-if ($results == NULL) {
-    echo 'Nessun Acquario Configurato <br> AGGIUNGINE UNO!';
-}
+<div class="container"> 
 
-else {
-    echo '<div class="row"><div class="col-md-4">ID</div><div class="col-md-8">Nome</div></div>';
-    
-    foreach ($results as $row) {
-    echo '<div class="row">';
-    echo '<div class="col-md-4">' . $row['idAcquario'] . '</div>' . '<div class="col-md-8">' . $row['Name'] . '</div>';
-    echo '</div>';
-}
-    
-}
-?><div class="container"> 
+    <?php
+    $acquariumShowResult = $db->select("Acquarium");
+    if ($acquariumShowResult == NULL) {
+        echo 'Nessun Acquario Configurato <br> AGGIUNGINE UNO!';
+    } else {
+        echo '<div class="row"><div class="col-md-4">ID</div><div class="col-md-8">Nome</div></div>';
+        foreach ($acquariumShowResult as $acquariumRow) {
+            echo '<div class="row">';
+            echo '<div class="col-md-4">' . $acquariumRow['idAcquario'] . '</div>' . '<div class="col-md-8">' . $acquariumRow['Name'] . '</div>';
+            echo '</div>';
+        }
+    }
+    ?>
 
     <div class="row">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" action="acquarium.php" method="POST" >
             <div class="form-group">
                 <label  class="col-sm-2 control-label">Nome Acquario</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="NameAcquarium" placeholder="Nome Acquario">
+                    <input type="text" class="form-control" id="NameAcquarium" name="NameAcquarium" placeholder="Nome Acquario">
                 </div>
             </div>
             <div class="form-group">
                 <label  class="col-sm-2 control-label">Altezza</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Altezza" placeholder="Altezza">
+                    <input type="text" class="form-control" id="Altezza"  name="Altezza"placeholder="Altezza">
                 </div>
 
                 <label  class="col-sm-2 control-label">Larghezza</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Larghezza" placeholder="Larghezza">
+                    <input type="text" class="form-control" id="Larghezza"  name="Larghezza" placeholder="Larghezza">
                 </div>
 
                 <label  class="col-sm-2 control-label">Profondità</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Profondita" placeholder="Profondità">
+                    <input type="text" class="form-control" id="Profondita" name="Profondita" placeholder="Profondità">
                 </div>
 
                 <label  class="col-sm-2 control-label">Litri</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Litri" placeholder="Litri">
+                    <input type="text" class="form-control" id="Litri" name ="Litri"placeholder="Litri">
                 </div>
 
                 <div class="row">
@@ -61,7 +57,19 @@ else {
         </form>
     </div>
 </div>
+<?php
+if ($_POST['NameAcquarium'] == "") {
+    
+} else {
 
-
-
+    $acquariumInsert = array(
+        "Name" => $_POST['NameAcquarium'],
+        "Height" => $_POST['Altezza'],
+        "Width" => $_POST['Larghezza'],
+        "Depth" => $_POST['Profondita'],
+        "Liters" => $_POST['Litri'],
+        "idUser" => 1);
+    $db->insert("Acquarium", $acquariumInsert);
+}
+?>
 <?php include_once 'footer.php'; ?>
