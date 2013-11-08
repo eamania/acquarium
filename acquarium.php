@@ -58,10 +58,7 @@ include_once 'header.php';
     </div>
 </div>
 <?php
-if ($_POST['NameAcquarium'] == "") {
-    
-} else {
-
+if ($_POST['NameAcquarium'] != "") {
     $acquariumInsert = array(
         "Name" => $_POST['NameAcquarium'],
         "Height" => $_POST['Altezza'],
