@@ -19,7 +19,8 @@ include_once 'header.php';
     ?>
 
     <div class="row">
-        <form class="form-horizontal" role="form" action="acquarium.php" method="POST" >
+        <form class="form-horizontal" role="form" action="add.php" method="POST" >
+            <input type=”hidden” name=”Acquarium” value=”isAcquarium”>
             <div class="form-group">
                 <label  class="col-sm-2 control-label">Nome Acquario</label>
                 <div class="col-sm-10">
@@ -57,16 +58,5 @@ include_once 'header.php';
         </form>
     </div>
 </div>
-<?php
-if ($_POST['NameAcquarium'] != "") {
-    $acquariumInsert = array(
-        "Name" => $_POST['NameAcquarium'],
-        "Height" => $_POST['Altezza'],
-        "Width" => $_POST['Larghezza'],
-        "Depth" => $_POST['Profondita'],
-        "Liters" => $_POST['Litri'],
-        "idUser" => 1);
-    $db->insert("Acquarium", $acquariumInsert);
-}
-?>
+
 <?php include_once 'footer.php'; ?>
