@@ -11,23 +11,34 @@ $fishShowResult = $db->select("Fish");
         echo '<div class="row"><div class="col-md-4">Name</div><div class="col-md-8">Species</div></div>';
         foreach ($fishShowResult as $fishRow) {
             echo '<div class="row">';
-            echo '<div class="col-md-4">' . $fishRow['Name'] . '</div>' . '<div class="col-md-8">' . $fishRow['Species'] . '</div>';
+            echo '<div class="col-md-4">' . $fishRow['Name'] . '</div>' . '<div class="col-md-8">' . $fishRow['Family'] . '</div>';
             echo '</div>';
         }
     }
     ?>
-    <div class="row">
-        <form class="form-horizontal" role="form" action="add.php" method="POST">
+</div>
+
+
+
+<?php $modalAddFish = new modalCreation(); ?>
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<?php echo "addFish" ?>">
+    Inserisci un Pesce</button>
+
+<!-- Modal -->
+    <form class="form-horizontal" role="form" action="add.php" method="POST">
+        <?php $modalAddFish->headerModal("addFish", "Aggiungi i Pesci", "Pesci Label"); ?>  
+        <div class="row">
             <input type=”hidden” name=”Fish” value=”isFish”>
             <div class="form-group">
-<!--                GENERAL-->
+                <!--GENERAL-->
                 <div class="col-sm-6"> 
                     <h3>General</h3>
                     <label for="NameFish" class="col-sm-4 control-label">Name</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="NameFish" name="NameFish" placeholder="Name">
                     </div>
-                    <label for="ScientificName" class="col-sm-4 control-label">Scientific Name</label>
+                    <label for="ScientificName" class="col-sm-4 control-label">Scientific</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="ScientificName" name="ScientificName" placeholder="Scientific Name">
                     </div>
@@ -40,7 +51,7 @@ $fishShowResult = $db->select("Fish");
                         <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
                     </div>
                 </div>
-<!--                TEMPERAMENT-->
+                <!--TEMPERAMENT-->
                 <div class="form-group">
                     <div class="col-sm-6"> 
                         <h3>Temperament</h3>
@@ -60,14 +71,10 @@ $fishShowResult = $db->select("Fish");
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <?php $modalAddFish->footerModal("Aggiungi"); ?>  
+    </form>
 
 
-
-  <button type="submit" class="btn btn-default">AGGIUNGI</button>
-
-        </form>
-    </div>
-
-
-</div>
 <?php include_once 'footer.php'; ?>

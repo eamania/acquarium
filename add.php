@@ -20,7 +20,6 @@ if ($_POST['Acquarium'] == "isAcquarium") {
 }
 
 //INSERIMENTO PESCI
-if ($_POST['Fish'] == "isFish") {
     if ($_POST['NameFish'] != "") {
         $fishInsert = array(
             "Name" => $_POST['NameFish'],
@@ -32,4 +31,3 @@ if ($_POST['Fish'] == "isFish") {
         );
         $db->insert("Fish", $fishInsert);
     }
-}
