@@ -18,63 +18,46 @@ $fishShowResult = $db->select("Fish");
     ?>
 </div>
 
-
-
 <?php $modalAddFish = new modalCreation(); ?>
 
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<?php echo "addFish" ?>">
     Inserisci un Pesce</button>
 
-<!-- Modal -->
-    <form class="form-horizontal" role="form" action="add.php" method="POST">
-        <?php $modalAddFish->headerModal("addFish", "Aggiungi i Pesci", "Pesci Label"); ?>  
-        <div class="row">
-            <input type=”hidden” name=”Fish” value=”isFish”>
-            <div class="form-group">
-                <!--GENERAL-->
-                <div class="col-sm-6"> 
-                    <h3>General</h3>
-                    <label for="NameFish" class="col-sm-4 control-label">Name</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="NameFish" name="NameFish" placeholder="Name">
-                    </div>
-                    <label for="ScientificName" class="col-sm-4 control-label">Scientific</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="ScientificName" name="ScientificName" placeholder="Scientific Name">
-                    </div>
-                    <label for="Family" class="col-sm-4 control-label">Family</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="Family" name="Family" placeholder="Family">
-                    </div>
-                    <label for="Location" class="col-sm-4 control-label">Location</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
-                    </div>
-                </div>
-                <!--TEMPERAMENT-->
-                <div class="form-group">
-                    <div class="col-sm-6"> 
-                        <h3>Temperament</h3>
-                        <label for="Temperament" class="col-sm-4 control-label">Temperament</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" id="Temperament" name="Temperament">
-                                <option>Aggressive</option>
-                                <option>Semi Aggressive</option>
-                                <option>Slightly Aggressive</option>
-                                <option>Friendly</option>
-                                <option>Very Friendly</option>
-                            </select>                        
-                        </div>
-                        <label for="TemperamentDetails" class="col-sm-4 control-label">Temperament Details</label>
-                        <div class="col-sm-6">
-                            <textarea class="form-control" rows="7" id="TemperamentDetails" name="TemperamentDetails" placeholder="Temperament Details"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php $modalAddFish->footerModal("Aggiungi"); ?>  
-    </form>
-
-
 <?php include_once 'footer.php'; ?>
+
+<!-- Modal -->
+<?php
+$formAddFish = new formCreation();
+$formAddFish->action("add.php", "POST", "form-horizontal");
+$modalAddFish->headerModal("addFish", "Aggiungi i Pesci", "Pesci Label");
+?>  
+<div class="row">
+    <?php
+    $formAddFish->formGroupOpen('', 'col-sm-12', 'General');
+    
+    $formAddFish->textbox('col-sm-4 control-label', 'Name', 'form-control', 'NameFish', 'Name', '');
+    
+    $formAddFish->textbox('col-sm-4 control-label', 'Scientific', 'form-control', 'ScientificName', 'Scientific Name', '');
+    
+    $formAddFish->textbox('col-sm-4 control-label', 'Family', 'form-control', 'Family', 'Family', '');
+    
+    $formAddFish->textbox('col-sm-4 control-label', 'Location', 'form-control', 'Location', 'Location', '');
+    
+    $formAddFish->formGroupClose();
+    
+    $formAddFish->formGroupOpen('', 'col-sm-12', 'Temperament');
+    
+    $formAddFish->select("col-sm-4 control-label", "Temperament", "Temperament", "form-control");
+    $formAddFish->option("Aggressive", "Aggressive", '');
+    $formAddFish->option("Semi Aggressive", "Semi Aggressive", '');
+    $formAddFish->option("Slightly Aggressive", "Slightly Aggressive", '');
+    $formAddFish->option("Friendly", "Friendly", '');
+    $formAddFish->option("Very Friendly", "Very Friendly", '');
+    $formAddFish->selectClose();    
+    $formAddFish->textarea('col-sm-4 control-label', 'Temperament Details', 'form-control', 'TemperamentDetails', 7, 'Temperament', '');
+    
+    $formAddFish->formGroupClose();
+    ?>
+</div>
+<?php $modalAddFish->footerModal("Aggiungi"); ?>  
+</form>

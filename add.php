@@ -5,7 +5,6 @@ $dbDate = new MysqlData();
 $db = new myPDO("mysql:host=$dbDate->DatabaseServer;dbname=$dbDate->DatabaseName", $dbDate->DatabaseUsername, $dbDate->DatabasePassword);
 
 //INSERIMENTO ACQUARI
-if ($_POST['Acquarium'] == "isAcquarium") {
     if ($_POST['NameAcquarium'] != "") {
         $acquariumInsert = array(
             "Name" => $_POST['NameAcquarium'],
@@ -17,9 +16,10 @@ if ($_POST['Acquarium'] == "isAcquarium") {
         );
         $db->insert("Acquarium", $acquariumInsert);
     }
-}
+
 
 //INSERIMENTO PESCI
+
     if ($_POST['NameFish'] != "") {
         $fishInsert = array(
             "Name" => $_POST['NameFish'],
@@ -31,3 +31,4 @@ if ($_POST['Acquarium'] == "isAcquarium") {
         );
         $db->insert("Fish", $fishInsert);
     }
+    
