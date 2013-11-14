@@ -11,7 +11,7 @@ class modalCreation {
 
     //HEADER DEL MODAL
     function headerModal($modalID, $modalTitle, $modalLabel) {
-        echo '<div class="modal fade" id="' . $modalID . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'; 
+        echo '<div class="modal fade" id="' . $modalID . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >'; 
         echo '<div class="modal-dialog">';
         echo '<div class="modal-content">';
         echo '<div class="modal-header">';

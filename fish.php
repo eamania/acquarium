@@ -18,46 +18,21 @@ $fishShowResult = $db->select("Fish");
     ?>
 </div>
 
-<?php $modalAddFish = new modalCreation(); ?>
 
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<?php echo "addFish" ?>">
-    Inserisci un Pesce</button>
+<a class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#addFish">
+    Inserisci un Pesce</a>
+
 
 <?php include_once 'footer.php'; ?>
+   
 
-<!-- Modal -->
 <?php
+//Modal add fish -->
+$modalAddFish = new modalCreation();
 $formAddFish = new formCreation();
 $formAddFish->action("add.php", "POST", "form-horizontal");
 $modalAddFish->headerModal("addFish", "Aggiungi i Pesci", "Pesci Label");
+include_once 'modal/addFishModal.php';
+$modalAddFish->footerModal("Aggiungi");
+$formAddFish->actionClose();
 ?>  
-<div class="row">
-    <?php
-    $formAddFish->formGroupOpen('', 'col-sm-12', 'General');
-    
-    $formAddFish->textbox('col-sm-4 control-label', 'Name', 'form-control', 'NameFish', 'Name', '');
-    
-    $formAddFish->textbox('col-sm-4 control-label', 'Scientific', 'form-control', 'ScientificName', 'Scientific Name', '');
-    
-    $formAddFish->textbox('col-sm-4 control-label', 'Family', 'form-control', 'Family', 'Family', '');
-    
-    $formAddFish->textbox('col-sm-4 control-label', 'Location', 'form-control', 'Location', 'Location', '');
-    
-    $formAddFish->formGroupClose();
-    
-    $formAddFish->formGroupOpen('', 'col-sm-12', 'Temperament');
-    
-    $formAddFish->select("col-sm-4 control-label", "Temperament", "Temperament", "form-control");
-    $formAddFish->option("Aggressive", "Aggressive", '');
-    $formAddFish->option("Semi Aggressive", "Semi Aggressive", '');
-    $formAddFish->option("Slightly Aggressive", "Slightly Aggressive", '');
-    $formAddFish->option("Friendly", "Friendly", '');
-    $formAddFish->option("Very Friendly", "Very Friendly", '');
-    $formAddFish->selectClose();    
-    $formAddFish->textarea('col-sm-4 control-label', 'Temperament Details', 'form-control', 'TemperamentDetails', 7, 'Temperament', '');
-    
-    $formAddFish->formGroupClose();
-    ?>
-</div>
-<?php $modalAddFish->footerModal("Aggiungi"); ?>  
-</form>

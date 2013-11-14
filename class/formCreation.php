@@ -1,43 +1,16 @@
 <?php
 
-/* * ********************************************************************************
-
-  Dynamic Form Class ver 1.1
-
-  Dynamic Form Class generates form inputs, textareas, select menus and fieldsets
-  for any PHP based application or script.
-
-  File: form.class.php
-
-  Modified: 04-30-03
-
-  By: MT Jordan  mtjo@netzero.net - Copyright (c) 2003 Emmsoft.com
-
-  GPL License
-
-  - Action, select and fieldset objects must be closed manually in the HTML or template.
-
-  - Text input size and maxlength, file input size and textarea rows and cols
-  default to browser or can be entered as user defined arguments.
-
-  - Tool tips, CSS class IDs and input labels default to none for all objects or
-  can be entered as user defined arguments.
-
-  - Button and submit type= defaults to 'button' or 'submit' or an image
-  path can be entered as a user defined argument. Image bordersize defaults to 0.
-
-  - Enctype defaults to multipart/form-data.
-
-  - Form method= defaults to 'get' if empty. Valid arguments are 'get' and 'post'.
-
- * ******************************************************************************** */
-
 class formCreation {
 
     //creazione form
     function action($formAction, $formMethod, $formClass) {
         $action = '<form class="' . $formClass . '" role="form" action="' . $formAction . '" method="' . $formMethod . '" >';
         echo $action;
+    }
+
+    function actionClose() {
+
+        echo '</form>';
     }
 
     //gruppi
@@ -55,44 +28,45 @@ class formCreation {
         echo $formGroup;
     }
 
-    //campi di testo
-    function textbox($labelClass, $labelText, $textClass, $textNameID, $textPlaceholder, $textValue) {
-        $text = '<label for="' . $textNameID . '" class="' . $labelClass . '">' . $labelText . '</label>';
-        $text .= '<div class="col-sm-8">';
-        $text .= '<input type="text" name="' . $textNameID . '" id="' . $textNameID . '" class="' . $textClass . '" placeholder="' . $textPlaceholder . '" value="' . $textValue . '"  />';
+    //campi di testo e numerici
+
+    function textbox($labelText, $textNameID, $textPlaceholder = "", $textType = "text", $labelColNumber = "4", $textColNumber = "8", $texthtml = "", $textClass = "", $textValue = "") {
+
+        $text = '<label for="' . $textNameID . '" class="col-sm-' . $labelColNumber . ' control-label">' . $labelText . '</label>';
+        $text .= '<div class="col-sm-' . $textColNumber . '">';
+        $text .= '<input type="' . $textType . '" name="' . $textNameID . '" id="' . $textNameID . '" class="form-control ' . $textClass . '" placeholder="' . $textPlaceholder . '" value="' . $textValue . '"' . $texthtml . '  />';
         $text .= '</div>';
         echo $text;
     }
 
-    function textarea($labelClass, $labelText, $textareaClass, $textareaNameID, $textareaRows, $textareaPlaceholder, $textareaValue) {
-        $textarea = '<label for="' . $textareaNameID . '" class="' . $labelClass . '">' . $labelText . '</label>';
-        $textarea .= '<div class="col-sm-8">';
-        $textarea .= '<textarea name="' . $textareaNameID . '" id="' . $textareaNameID . '" class="' . $textareaClass . '" rows="' . $textareaRows . '"  placeholder="' . $textareaPlaceholder . '">' . $textareaValue . '</textarea>';
+    function textarea($labelText, $textareaNameID, $textareaPlaceholder = "", $textareaRows = "4", $labelColNumber = "4", $textareaColNumber = "8", $textareahtml = "", $textareaClass = "", $textareaValue = "") {
+        $textarea = '<label for="' . $textareaNameID . '" class="col-sm-' . $labelColNumber . ' control-label">' . $labelText . '</label>';
+        $textarea .= '<div class="col-sm-' . $textareaColNumber . '">';
+        $textarea .= '<textarea name="' . $textareaNameID . '" id="' . $textareaNameID . '" class="form-control ' . $textareaClass . '" rows="' . $textareaRows . '"  placeholder="' . $textareaPlaceholder . '" ' . $textareahtml . ' >' . $textareaValue . '</textarea>';
         $textarea .= '</div>';
         echo $textarea;
     }
     
     //select e option
-    function select($labelClass, $labelText, $selectNameID, $selectClass) {
-        $select = '<label for="' . $selectNameID . '" class="' . $labelClass . '">' . $labelText . '</label>';
-        $select .= '<div class="col-sm-8">';
-        $select .= '<select name="' . $selectNameID . '" id="' . $selectNameID . '" id="' . $selectClass . '">';
+    function select($labelText, $selectNameID, $labelColNumber="4", $selectColNumber="8", $selectClass="") {
+
+        $select = '<label for="' . $selectNameID . '" class="col-sm-' . $labelColNumber . ' control-label">' . $labelText . '</label>';
+        $select .= '<div class="col-sm-' . $selectColNumber . '">';
+        $select .= '<select name="' . $selectNameID . '" id="' . $selectNameID . '" class="form-control ' . $selectClass . '">';
         echo $select;
     }
-    
-    function selectClose () {
+
+    function selectClose() {
         $selectClose = '</select>';
         $selectClose .= '</div>';
         echo $selectClose;
     }
 
-    function option($optionValue, $optionText,  $optionSelected) {
-        $option = '<option value="' . $optionValue . '"selected="' .$optionSelected . '">' . $optionText . '</option>';
+    function option($optionValue, $optionText, $optionSelected) {
+        $option = '<option value="' . $optionValue . '"selected="' . $optionSelected . '">' . $optionText . '</option>';
         echo $option;
     }
-    
-    
-    
+
 }
 
 //class formCreation2 {
