@@ -3,8 +3,8 @@
 class formCreation {
 
     //creazione form
-    function action($formAction, $formMethod, $formClass) {
-        $action = '<form class="' . $formClass . '" role="form" action="' . $formAction . '" method="' . $formMethod . '" >';
+    function action($formAction, $formMethod, $formClass, $formID) {
+        $action = '<form id="'.$formID.'"class="' . $formClass . '" role="form" action="' . $formAction . '" method="' . $formMethod . '" >';
         echo $action;
     }
 
@@ -30,7 +30,7 @@ class formCreation {
 
     //campi di testo e numerici
 
-    function textbox($labelText, $textNameID, $textPlaceholder = "", $textType = "text", $labelColNumber = "4", $textColNumber = "8", $texthtml = "", $textClass = "", $textValue = "") {
+    function textbox($labelText, $textNameID, $textPlaceholder = "",  $textValue = "", $textType = "text", $labelColNumber = "4", $textColNumber = "8", $texthtml = "", $textClass = "") {
 
         $text = '<label for="' . $textNameID . '" class="col-sm-' . $labelColNumber . ' control-label">' . $labelText . '</label>';
         $text .= '<div class="col-sm-' . $textColNumber . '">';

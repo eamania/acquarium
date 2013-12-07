@@ -24,10 +24,10 @@ class modalCreation {
 
     
     //FOOTER DEL MODAL
-    function footerModal($modalType) {
+    function footerModal($modalType, $modalButtonID) {
         echo '<div class="modal-footer">';
         echo '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-        echo '<button type="submit" class="btn btn-primary">' . $modalType . '</button>';
+        echo '<input type="submit" id="'.$modalButtonID.'" class="btn btn-primary" value="'. $modalType .'" />';
         echo '</div>';
         echo '</div>';
         echo '</div>';
